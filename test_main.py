@@ -24,7 +24,7 @@ def test_get_goals(test_database):
 
 def test_create_goal(test_database):
     response = client.post(
-        "/goals", json={"title": "Learn FastAPI", "status": "In progress"}
+        "/goals", json={"title": "Learn FastAPI", "status": "in_progress"}
     )
 
     assert response.status_code == 200
@@ -45,7 +45,7 @@ def test_get_missing_goal(test_database):
 
 def test_update_goal(test_database):
     response = client.post(
-        "/goals", json={"title": "Learn Python", "status": "In progress"}
+        "/goals", json={"title": "Learn Python", "status": "in_progress"}
     )
     data = response.json()
     goal_id = data["id"]
@@ -65,7 +65,7 @@ def test_update_goal(test_database):
 
 def test_delete_goal(test_database):
     response = client.post(
-        "/goals", json={"title": "Learn SQL", "status": "In progress"}
+        "/goals", json={"title": "Learn SQL", "status": "in_progress"}
     )
     data = response.json()
     goal_id = data["id"]
@@ -82,3 +82,8 @@ def test_create_invalid_goal(test_database):
     response = client.post("/goals", json={"title": "Learn Python"})
 
     assert response.status_code == 422
+
+def test_create_goal_invalid_status(test_database):
+    response = client.post("/goals", json={"title": "learn golf", "status": "bananase"})
+
+    assert response.status_code == 422   

@@ -13,6 +13,16 @@ The Learning Tracker API allows users to create, view, update and delete their l
 - HTTPX
 - Uvicorn
 
+## Installation
+
+1. Clone or download the repository.
+
+2. Open a terminal in the project folder and install the required dependencies using `python -m pip install -r requirements.txt`.
+
+3. Start the application by running `python -m uvicorn main:app --reload`.
+
+4. Open `http://127.0.0.1:8000/docs` to access the API documentation.
+
 ## API Endpoints
 
 | Method | Endpoint | Description |
@@ -23,15 +33,18 @@ The Learning Tracker API allows users to create, view, update and delete their l
 | PATCH | /goals/{goal_id} | Update an existing goal |
 | DELETE | /goals/{goal_id} | Delete a goal |
 
-## Installation
+## status Handling
 
-1. Clone or download the repository.
+There are only 3 statuses the API accepts, `not_started`- the goal has not been started, `in_progress`- the user is currently working on the goal and `completed`- the goal has been achieved.
 
-2. Open a terminal in the project folder and install the required dependencies using `python -m pip install -r requirements.txt`.
+Example- 
 
-3. Start the application by running `python -m uvicorn main:app --reload`.
+{
 
-4. Open `http://127.0.0.1:8000/docs` to access the API documentation.
+"title": "learn Python"
+"status": "in_progress"
+
+}
 
 ## Testing
 
