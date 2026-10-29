@@ -1,18 +1,21 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import sqlite3
+from typing import Literal
 
 app = FastAPI()
 
 
 class Goal(BaseModel):
     title: str
-    status: str
+    status: Literal["not_started", "in_progress", "completed"]
+    
 
 
 class GoalUpdate(BaseModel):
     title: str | None = None
-    status: str | None = None
+    status: Literal["not_started", "in_progress", "completed"] | None = None
+    
 
 
 DATABASE = "learning_tracker.db"
