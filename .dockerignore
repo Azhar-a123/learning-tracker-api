@@ -1,0 +1,7 @@
+.git
+.venv
+venv
+__pychache__
+*.pytest_cache
+.pytest_cache
+learning_tracker.db

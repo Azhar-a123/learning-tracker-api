@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import sqlite3
 from typing import Literal
+import os
 
 app = FastAPI()
 
@@ -18,10 +19,14 @@ class GoalUpdate(BaseModel):
     
 
 
-DATABASE = "learning_tracker.db"
+DATABASE = os.getenv("DATABASE_PATH", "learning_tracker.db")
 
 
 def get_connection():
+    directory = os.path.dirname(DATABASE)
+    if directory:
+        os.makedirs(directory, exist_ok=True)
+    
     connection = sqlite3.connect(DATABASE)
     return connection
 
